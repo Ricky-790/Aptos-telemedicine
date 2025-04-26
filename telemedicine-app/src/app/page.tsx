@@ -1,9 +1,9 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { MessageBoard } from "@/components/MessageBoard";
+// import { MessageBoard } from "@/components/MessageBoard";
 import { NetworkInfo } from "@/components/NetworkInfo";
-import { TopBanner } from "@/components/TopBanner";
+// import { TopBanner } from "@/components/TopBanner";
 import { TransferAPT } from "@/components/TransferAPT";
 import { WalletDetails } from "@/components/WalletDetails";
 import { Button } from "@/components/ui/button";
@@ -69,8 +69,8 @@ const PAY_CONSULTATION_FUNCTION = "pay_consultation_fee";
     }
   };
 const consultationFee = 0.1; // Example fee, replace with actual value
-const name = "Dr. John Doe"; // Example doctor name, replace with actual 
-const providerAddress= "value"
+const name = "Dr. Strange"; // Example doctor name, replace with actual 
+const providerAddress= "0x0ca4e1ae9877b787f94a341e242e9b383b727d087b426f192a304f2b0b633d8e"
   const handlePayClick = async () => {
     if (!providerAddress) {
       toast.error("Doctor address is not available.");
@@ -84,7 +84,7 @@ const providerAddress= "value"
       providerAddress: providerAddress,
       consultationFee: consultationFee,
       onPaymentSuccess: () => {
-        toast.success(`Successfully paid Dr. ${name}!`);
+        toast.success(`Successfully paid ${name}!`);
         // Optionally update UI or refetch data
       },
       onPaymentError: (error) => {
@@ -99,9 +99,7 @@ const providerAddress= "value"
   };
 
   return (
-    <>
-    <TopBanner />
-      <Header />
+    <>      <Header />
       <div className="flex items-center justify-center flex-col">
         {account ? (
           <Card>
@@ -110,7 +108,24 @@ const providerAddress= "value"
               <NetworkInfo />
               {/* <AccountInfo /> */}
               <TransferAPT />
-              <Button onClick={handlePayClick}> Add new list </Button>
+              <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 shadow-lg max-w-sm">
+  <div className="space-y-4">
+    <div className="w-full h-40 bg-gray-800 rounded-md flex items-center justify-center">
+      <img src="https://www.intofilm.org/intofilm-production/2520/scaledcropped/1170x658/resources/2520/doctor-strange-crop.jpg" alt="Placeholder Image" className="max-w-full max-h-full rounded-md"/>
+    </div>
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-white text-lg font-semibold">{name}</p>
+        <p className="text-gray-400 text-sm">Consultation fee: {consultationFee}</p>
+      </div>
+      <Button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md border border-gray-700" onClick={handlePayClick}>
+        Pay
+      </Button>
+    </div>
+  </div>
+</div>
+
+              {/* <Button onClick={handlePayClick}> Add new list </Button> */}
             </CardContent>
           </Card>
         ) : (
